@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Predicting Fatal Police Shootings with City Crime Statistics | Daniel Santana-Garcia</title>
+  <link rel = 'canonical' href = 'https://example.com/projects/2022-04-28policecities/'>
+  <meta name="description" content="Hey guys! My name is Daniel and this is my data science/ML website! Currently, it is broken up into two sections. The first section contains projects that I&#39;ve completed in my journey as an aspiring data scientist. Although I only have one project so far, I plan on creating a collection of competition, research, and personal projects. The second section has my walkthroughs of chapters in data science/ML textbooks. I&#39;m currently reading Aurélien Géron&#39;s Hands-On Machine Learning.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="Predicting Fatal Police Shootings with City Crime Statistics" />
+<meta property="og:description" content="The project was for submitted as the final project for STOR 320, the undergraduate introductory data science course at UNC-Chapel Hill. The project is split into two questions and it used the tidyverse, caret, and kable packages in R. My collaborators were Kavish Gandhi, Ananya Garg, Tianrui Ye, Zhi Cao, and Elizabeth Malone.
+INTRODUCTION Police brutality has been on the forefront of the national stage in recent years, especially following the murder of George Floyd and the successive Black Lives Matter movement." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/projects/2022-04-28policecities/" /><meta property="article:section" content="projects" />
+<meta property="article:published_time" content="2022-04-28T09:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-28T09:00:00+00:00" />
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Predicting Fatal Police Shootings with City Crime Statistics"/>
+<meta name="twitter:description" content="The project was for submitted as the final project for STOR 320, the undergraduate introductory data science course at UNC-Chapel Hill. The project is split into two questions and it used the tidyverse, caret, and kable packages in R. My collaborators were Kavish Gandhi, Ananya Garg, Tianrui Ye, Zhi Cao, and Elizabeth Malone.
+INTRODUCTION Police brutality has been on the forefront of the national stage in recent years, especially following the murder of George Floyd and the successive Black Lives Matter movement."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://example.com/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://example.com/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+    <header id="header">
+  <a href="https://example.com">
+  
+    <div id="logo" style="background-image: url(https://example.com/images/logo.png)"></div>
+  
+  <div id="title">
+    <h1>Daniel Santana-Garcia</h1>
+  </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fas fa-bars fa-2x" aria-hidden="true"></i></a>
+      </li>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/projects">Projects</a></li>
+      
+        <li><a href="/chapters">Chapter Reviews</a></li>
+      
+        <li><a href="/about">About</a></li>
+      
+    </ul>
+  </div>
+</header>
+
+
+
+    
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <div class="content" itemprop="articleBody">
+  
+    <p>The project was for submitted as the final project for <a href="https://supermariogiacomazzo.github.io/STOR320_WEBSITE/">STOR 320</a>, the undergraduate introductory data science course at UNC-Chapel Hill. The project is split into two questions and it used the <em>tidyverse</em>, <em>caret</em>, and <em>kable</em> packages in R. My collaborators were <a href="https://www.linkedin.com/in/kavish-gandhi-575796194/">Kavish Gandhi</a>, <a href="https://www.linkedin.com/in/ananya-garg-909911152/">Ananya Garg</a>, <a href="https://www.linkedin.com/in/tianrui-ye-788428214/">Tianrui Ye</a>, Zhi Cao, and Elizabeth Malone.</p>
+<h1 id="introduction">INTRODUCTION</h1>
+<p>Police brutality has been on the forefront of the national stage in recent years, especially following the murder of George Floyd and the successive Black Lives Matter movement. The nation becomes increasingly more hostile with each new headline of another life lost at the hands of police. When did our protective forces also become judge, jury, and executioner? After discovering that fatal police shootings were severely under-counted by the FBI, the Washington Post began tracking every fatal police shooting in the United States. Over the past seven years, over one thousand citizens have been shot and killed by police per year. Why does this happen?</p>
+<p>Our data analysis examines the variables associated with being fatally shot by a police officer. Some of these variables pertain to the victim’s demographic features, including <strong>Race</strong>, <strong>Gender</strong>, <strong>Age</strong>, and <strong>Signs Of Mental Illness</strong>. Other variables relate to the details of the shooting incident, including the <strong>Threat Level</strong> imposed by the victim, their <strong>Armed Status</strong>, and the <strong>City</strong> and <strong>State</strong> in which the shooting took place. Our initial exploratory data analysis focused on the interactions between these variables, leading us to question which variables were the most telling in leading to being fatally shot by the police.</p>
+<p>The first question that we have chosen to explore relates to the incidence of fatal shootings by police in different cities as compared to overall crime rates in these cities. Understanding the relationship between fatal police shootings and the general crime rate for each city can give us insight into potential future shootings within certain crime-ridden cities. Our second question pertains to the variables that have the largest correlation with high threat levels imposed by the victim. The threat level imposed by the victim is a subjective measure of how endangered the police officer felt in that moment. We are curious as to how demographic components like <strong>Race</strong> and <strong>Gender</strong> can play into perceived <strong>Threat Level</strong> based on internal bias, as opposed to situational factors like whether the victim attempted to flee the scene. We also want to see how the victim’s city environment impacts their threat level. With this knowledge, we can make predictions about future occurrences between police and civilians, in order to examine whether the civilian would pose enough threat to the police to warrant being fatally shot.</p>
+<h1 id="data">DATA</h1>
+<p>Our data set was compiled by the Washington Post after they discovered that the FBI was under-counting fatal police shootings. It includes 6,953 observations, representing fatal police shootings over the course of January 2, 2015 to January 13, 2022. There are sixteen total variables which include information about the victim’s identity as well as the incident of the shooting. Some of these variables were more important to our data analysis than others and will allow us to find answers to the questions posed above.</p>
+<p>We regarded the demographic features as important variables in our exploration of the data. The <strong>Race</strong> variable classifies the racial background of the victim. The <strong>Gender</strong> variable refers to the gender expression of the victim; if the person’s gender expression differed from their biological sex, The Washington Post listed the gender that the victim identified within the report. Information pertinent to the shooting was also included in our exploration. The <strong>Flee</strong> variable refers to the victim’s attempt to escape from the police. The <strong>Threat Level</strong> variable explains the level of threat that the police felt was being imposed on them by the victim. The <strong>City</strong> and <strong>State</strong> variables describe the location at which the shooting occurred.</p>
+<p>The key variables that piqued our interest were the <strong>City</strong> and <strong>Threat Level</strong> variables, which is how we formulated our questions. We created a new variable named <strong>Fatal Police Shootings</strong>, which is the count of fatal police shootings in each city. In order to look at individual city crime rates, we compiled data from the FBI’s Uniform Crime Report (UCR). The UCR is a yearly report of crimes submitted by state and local law enforcement agencies to the FBI. For this analysis, we focused on the 2018 report, which contains crime statistics for 9,252 cities. There are 10 variables that we used from this data set: <strong>State</strong>, <strong>City</strong>, <strong>Population</strong>, <strong>Murder</strong>, <strong>Rape</strong>, <strong>Aggravated Assault</strong>, <strong>Robbery</strong>, <strong>Burglary</strong>, <strong>Larceny</strong>, and <strong>Vehicle Theft</strong>. It is important to note that there was limited data for Iowa and North Carolina, as these states used a different definition of rape in 2018 than the official UCR definition. Therefore, cities from these states are not included in the data set.</p>
+<p>After joining the two data sets by <strong>City</strong> and <strong>State</strong>, we calculated each crime statistic per 100,000 city residents. Since the first question is only looking at the relationship between <strong>Fatal Police Shootings</strong> in cities and the crime rates in that city, we created two separate data sets. Each row  in the data set for the first question contains the city name, state name, the rate of fatal police shootings in that city, and their crime rates in the UCR. The data set for the second question includes all of the variables from the Washington Post data set and the UCR. Each row contains the demographics of each victim and the crime rates from the city where the shooting occurred.</p>
+<h2 id="question-1">QUESTION 1</h2>
+<figure><img src="/images/Question1_Table.png"/>
+</figure>
+
+<h2 id="question-2">QUESTION 2</h2>
+<figure><img src="/images/Question2_Table.png"/>
+</figure>
+
+<p><strong>Threat Level</strong> was the other variable of particular interest to us, because in order for a fatal police shooting to take place, the police officer would have had to feel endangered beyond a reasonable doubt. The label of <em>Attack</em> under this variable is best described as having proposed a direct and immediate threat to the officer’s life, while the classification of <em>Other</em> means that there was some threat imposed, but not as direct as to be considered an attack. For the sake of categorization, we labeled <em>Attack</em> as 1 and <em>Other</em> as 0. What types of information causes a police officer to feel so threatened that they shoot someone? In our exploratory data analysis, we examined the relationship between <strong>Threat Level</strong> with the variables of <strong>Race</strong> and <strong>Gender</strong>. That graph is shown below:
+<figure><img src="/images/EDA_Figure.png"/>
+</figure>
+</p>
+<h1 id="results">RESULTS</h1>
+<h2 id="question-1-1">QUESTION 1</h2>
+<p>Our first question attempted to predict police shootings in a city by examining the crime statistics of that city. Our first step was to split up the city data into two types. Violent crimes refer to crimes against people and include <strong>Murder</strong>, <strong>Rape</strong>, <strong>Robbery</strong>, and <strong>Aggravated Assault</strong>. Property crimes refer to crimes against property and include <strong>Burglary</strong>, <strong>Larceny</strong>, and <strong>Vehicle Theft</strong>. The final variable for the city data is the <strong>Population</strong>, expressed as per 100,000 people.</p>
+<p>Based on these variables, four different models were created: (1) a full model with all of the variables, (2) a model with violent crimes and population, (3) a model with property crimes and population, (4) a model with only the population variable. We performed a 10-fold cross validation of the four models and examined the resulting <em>RMSE</em>, <em>R^2^</em>, and <em>MAE</em>. The Full Model and Property Model had the lowest <em>RMSE</em> and <em>MAE</em> out of the four models. Because the Property Model is the more reduced model, we chose to examine this model’s predicting abilities in more depth. 
+<figure><img src="/images/10CV_OG.png"/>
+</figure>
+
+<figure><img src="/images/Property_Figures.png"/>
+</figure>
+</p>
+<p>After having selected the Property Model, we made a visual to compare the actual fatal police shootings with fitted data points from the model. We also examined a residual plot. An issue with these graphs was that a very large outlier occurred from the city of Industry, CA, which has a population of around 300 people but employs nearly 70,000 due to all of the industrial companies centered here. We decided to remove this major outlier and redo the 10-fold cross validation among the four models, in order to see if this decreased the error at all. The <em>RMSE</em> and <em>MAE</em> did decrease once the point was removed, but the <em>R^2^</em> worsened.</p>
+<figure><img src="/images/10CV_Industry.png"/>
+</figure>
+
+<p>While the model statistics were closer to each in the second cross validation, we decided to continue with the Violent as it had the lowest MAE. We made another graph to compare the fitted fatal police shootings versus actual fatal police shootings and another residual plot. It is important to note that we only included the fitted data points that were above zero, as there cannot be a negative number of fatal police shootings. The general shapes of these plots did not change much from the first one, so we performed log transformations to test if the Violent Model would do a better job of predicting the logs of fatal police shootings. Unfortunately, the log fitted values and the log actual values produced a horizontal shape, indicating no relationship between the log of the actual shootings and the log of the fitted shootings. Therefore, we can conclude that the city crime statistics are not effective for predicting the incidence of fatal police shootings in cities.</p>
+<p><figure><img src="/images/Violent_Figures.png"/>
+</figure>
+
+<figure><img src="/images/Violent_Transformations.png"/>
+</figure>
+</p>
+<h2 id="question-2-1">QUESTION 2</h2>
+<p>In order to answer the second question, we attempted to predict a victim’s imposed threat level using different models. We made a data set that included 3,801 observations and included information about the victim’s demographics and the statistics for the city in which they were shot. We created three models: (1) a model with the victim’s demographics, including their race, gender, and whether they attempted to flee from the police, (2) a crime model that included crime statistics from each city, and (3) a relative importance model.</p>
+<p>For the relative importance model, we measured the importance of each variable for prediction. First, we randomly divided the entire data into two bins. Since the data set was not large enough, we set it up so that we could repeat the extraction to increase the accuracy. We then used the first box as the training data set and the second box as the test data set and removed any invalid data. After this step, we tried to optimize the model. The first thing we did was filter the variables, removing the smallest one at a time based on the sum of squares of each variable until there were two variables left: <strong>Flee</strong> and <strong>Murder</strong>. After this step, we found that the AIC of the original data was -2763, and the AIC of the final completed operation was -2774. The change was not significant compared to the original data, so we used the actual data for the subsequent processes. We added a new predictor variable, R, to all variables and examined the relative weight of each variable by comparing the value of the average increase in R-squared caused by the addition of the new variable. In other words, when this new variable R is added, if the R-squared changes more, this variable has more influence on the overall model. Looking at the bar plot, we chose the four variables with the highest importance - <strong>Murder</strong>, <strong>Aggravated Assault</strong>, <strong>Flee</strong>, <strong>Robbery</strong> - for the relative importance model.</p>
+<figure><img src="/images/Relative_Importance.png"/>
+</figure>
+
+<p>A 10-fold cross validation was performed to look at the <em>accuracy</em> and <em>kappa</em> of each of the models. The prediction <em>accuracy</em> for each model was around 65% and the <em>kappa</em> was around zero. The <em>kappa</em> coefficient measures the agreement between an actual value and an expected value on a range from 0-1. Values closer to 1 are more accurate.</p>
+<p>Our models all appeared to be very similar in terms of <em>accuracy</em> and <em>kappa</em>, so we made a confusion matrix to explicitly see the breakdown of the models’ predictions. Of the 3,801 victims in the data set, the models correctly identified around 2,500 victims as threats to the police. Another 1-3 people were correctly identified as non threats. However, about 1,300 victims were falsely identified by the model as being threats, when they were actually non-threats, which is a very large amount of false positives. Alternatively, 0-2 people who were actually threats were labeled by the models as non-threats. Our conclusion based on this data is that we would not want to use these models in a real setting in order to predict if a person was a threat, because one-third of the time, the models were inaccurate. Having such a high rate of inaccuracy could lead to more unnecessary shootings by police, for they perceive a non-threat as a threat and take physical action against the victim.</p>
+<figure><img src="/images/Question2_Figures.png"/>
+</figure>
+
+<h1 id="conclusion">CONCLUSION</h1>
+<p>The first question we set out to explore was if the incidence of fatal police shootings in different cities compared to the overall crime statistics in these cities. The biggest indicator for the answer to this question was the Log Actual vs Log Fitted graph for the Property Model, excluding Industry, CA. This graph showed that there was no relationship between the incidence of fatal police shootings and the overall crime statistics of these cities. The scatter plot between Log Fitted and Log Actual shows an obvious horizontal trend, indicating no meaningful relationship exist between the two. Based on our findings for the first question, there is not significant evidence to say that a city&rsquo;s crime statistics are important for predicting the incidence of fatal police shootings in that city. The second question we explored was how the reported threat level of a victim changed based on the crime statistics of the city and the victim’s identity demographics. We saw no relation between these factors and reported threat level. This is indicated by the confusion matrix table. Our models showed that only 2-4 people out of 3,801 people were categorized as non-threats in fatal police shootings, which is an alarmingly low rate. Because of this, we cannot use only these variables to form a categorization of threat level based on crime statistics or demographics. These conclusions are unusual. We assumed that a city&rsquo;s crime statistics would have an effect on the perceived threat levels and incidences of fatal police shootings, as cities with more crime would be deemed more dangerous. We also used prior knowledge to assume that demographics would play a role in incidents of fatal shootings. The models we produced to answer either of those questions led us to conclusions that indicated no relationship or comparisons between the variables we chose. Therefore, the conclusions were unexpected.</p>
+<p>Our findings were inconclusive regarding variables that will most likely lead to a fatal police shooting by police, which indicates that people of any identity, in any place, can be afflicted with this type of violence. Reasons for this could include abuse of power by the police, increased crime rates, police taking a more violent approach with increase of social activism and protests, etc. Since we could not find a conclusive relationship between city crime statistics and other demographics with fatal police shootings, we cannot deduce whether the victims of these shootings were at fault, or whether it was a misconception on the police officer’s part. A better approach would be to now focus on factors like police funding, education, implicit bias training, and DEI (diversity, equity and inclusion) training at police stations, to better understand the police’s mentality behind these shootings. We could analyze police funding at each major city’s police headquarters, along with the level of education that is required to become part of the police force in each city. This would help us better understand why police brutality is so prominent in the country, and if need be, partially defund the police in areas where fatal police shootings are extremely high and increase police education to help them deal with crimes in a more humane manner. To further increase the usefulness of this data, we could search for other data sets that include cases of police brutality where the victim was not killed to better analyze whether factors like race, gender, etc. or city crime statistics affect the occurrence of a fatal police shooting. This data could then be analyzed for each major city to make a more in-depth conclusion on whether factors like race and gender really affect the occurrence of a fatal police shooting in major American cities.</p>
+
+  
+  </div>
+</article>
+
+
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  Daniel Santana-Garcia 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/projects">Projects</a></li>
+         
+        <li><a href="/chapters">Chapter Reviews</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+</html>

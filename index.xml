@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Daniel Santana-Garcia</title>
+    <link>https://example.com/</link>
+    <description>Recent content on Daniel Santana-Garcia</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Daniel Santana-Garcia</copyright>
+    <lastBuildDate>Wed, 11 May 2022 22:54:49 +0000</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hands-On Machine Learning - Chapter 1</title>
+      <link>https://example.com/chapters/2022-05-11-handson1/</link>
+      <pubDate>Wed, 11 May 2022 22:54:49 +0000</pubDate>
+      
+      <guid>https://example.com/chapters/2022-05-11-handson1/</guid>
+      <description>This is a test to see if this will work. Hopefully, it does.</description>
+    </item>
+    
+    <item>
+      <title>About Daniel</title>
+      <link>https://example.com/about/</link>
+      <pubDate>Wed, 11 May 2022 17:51:42 +0000</pubDate>
+      
+      <guid>https://example.com/about/</guid>
+      <description>About Daniel Hey everyone! My name is Daniel Santana-Garcia and I&amp;rsquo;m a 3rd year Statistics major at the University of North Carolina at Chapel Hill. In Spring 2022, I took an introductory data science course, which made me fall in love with the field. This website is my effort in navigating through a subject that I&amp;rsquo;m essentially jumping in feet first. So please, join me on this journey!
+Outside of data scicene, my hobbies include watching and talking soccer, playing video games (massive FIFA and Football Manager fan!</description>
+    </item>
+    
+    <item>
+      <title>Predicting Fatal Police Shootings with City Crime Statistics</title>
+      <link>https://example.com/projects/2022-04-28policecities/</link>
+      <pubDate>Thu, 28 Apr 2022 09:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/projects/2022-04-28policecities/</guid>
+      <description>The project was for submitted as the final project for STOR 320, the undergraduate introductory data science course at UNC-Chapel Hill. The project is split into two questions and it used the tidyverse, caret, and kable packages in R. My collaborators were Kavish Gandhi, Ananya Garg, Tianrui Ye, Zhi Cao, and Elizabeth Malone.
+INTRODUCTION Police brutality has been on the forefront of the national stage in recent years, especially following the murder of George Floyd and the successive Black Lives Matter movement.</description>
+    </item>
+    
+  </channel>
+</rss>

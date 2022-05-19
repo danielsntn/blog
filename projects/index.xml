@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Daniel Santana-Garcia</title>
+    <link>https://example.com/projects/</link>
+    <description>Recent content in Projects on Daniel Santana-Garcia</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Daniel Santana-Garcia</copyright>
+    <lastBuildDate>Thu, 28 Apr 2022 09:00:00 +0000</lastBuildDate><atom:link href="https://example.com/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Predicting Fatal Police Shootings with City Crime Statistics</title>
+      <link>https://example.com/projects/2022-04-28policecities/</link>
+      <pubDate>Thu, 28 Apr 2022 09:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/projects/2022-04-28policecities/</guid>
+      <description>The project was for submitted as the final project for STOR 320, the undergraduate introductory data science course at UNC-Chapel Hill. The project is split into two questions and it used the tidyverse, caret, and kable packages in R. My collaborators were Kavish Gandhi, Ananya Garg, Tianrui Ye, Zhi Cao, and Elizabeth Malone.
+INTRODUCTION Police brutality has been on the forefront of the national stage in recent years, especially following the murder of George Floyd and the successive Black Lives Matter movement.</description>
+    </item>
+    
+  </channel>
+</rss>

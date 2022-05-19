@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chapters on Daniel Santana-Garcia</title>
+    <link>https://example.com/chapters/</link>
+    <description>Recent content in Chapters on Daniel Santana-Garcia</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Daniel Santana-Garcia</copyright>
+    <lastBuildDate>Wed, 11 May 2022 22:54:49 +0000</lastBuildDate><atom:link href="https://example.com/chapters/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hands-On Machine Learning - Chapter 1</title>
+      <link>https://example.com/chapters/2022-05-11-handson1/</link>
+      <pubDate>Wed, 11 May 2022 22:54:49 +0000</pubDate>
+      
+      <guid>https://example.com/chapters/2022-05-11-handson1/</guid>
+      <description>This is a test to see if this will work. Hopefully, it does.</description>
+    </item>
+    
+  </channel>
+</rss>
